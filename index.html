@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+
+<html lang="ru">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<meta name="theme-color" content="#090909">
+
+<title>ROBLOK AI</title>
+
+<style>
+
+*{box-sizing:border-box}
+
+body{margin:0;background:#090909;color:#f5f5f5;font-family:Arial,sans-serif;padding:22px}
+
+header{color:#f5c542;font-size:28px;font-weight:bold;margin:15px 0}
+
+.card{background:#171717;border:1px solid #393323;border-radius:16px;padding:18px;margin:14px 0}
+
+h2{color:#f5c542;font-size:19px}
+
+button{background:#f5c542;color:#111;border:0;border-radius:10px;padding:12px 16px;font-weight:bold}
+
+input,textarea{width:100%;background:#252525;color:white;border:1px solid #555;border-radius:9px;padding:12px;margin:8px 0}
+
+small{color:#aaa}
+
+</style>
+
+</head>
+
+<body>
+
+<header>ROBLOK AI</header>
+
+<small>YOUR ROBLOX PROJECT ASSISTANT</small>
+
+<div class="card">
+
+<h2>🤖 AI Assistant</h2>
+
+<textarea id="question" rows="3" placeholder="Напиши, что хочешь создать в Roblox..."></textarea>
+
+<button onclick="ask()">Отправить</button>
+
+<p id="answer">Я готов помогать с твоими проектами!</p>
+
+</div>
+
+<div class="card">
+
+<h2>🎮 Roblox Profile</h2>
+
+<input id="username" placeholder="Roblox username">
+
+<button onclick="profile()">Найти профиль</button>
+
+<p id="profile"></p>
+
+</div>
+
+<div class="card">
+
+<h2>📊 Project Analyzer</h2>
+
+<textarea id="code" rows="5" placeholder="Вставь сюда Lua-код Roblox"></textarea>
+
+<button onclick="analyze()">Анализировать код</button>
+
+<p id="analysis"></p>
+
+</div>
+
+<div class="card">
+
+<h2>💰 Robux Forecast</h2>
+
+<input id="visits" type="number" placeholder="Ожидаемые посещения">
+
+<input id="conversion" type="number" placeholder="Процент покупок">
+
+<button onclick="forecast()">Рассчитать</button>
+
+<p id="forecast"></p>
+
+<small>Это условная оценка, не гарантированный доход.</small>
+
+</div>
+
+<script>
+
+function ask(){
+
+const q=document.getElementById('question').value.trim();
+
+document.getElementById('answer').textContent=q?
+
+'Запрос принят: '+q+'. Для настоящего AI-ответа нужно подключить AI-сервер.':
+
+'Сначала напиши вопрос.';
+
+}
+
+function profile(){
+
+const u=document.getElementById('username').value.trim();
+
+document.getElementById('profile').innerHTML=u?
+
+'<a style="color:#f5c542" target="_blank" href="https://www.roblox.com/search/users?keyword='+encodeURIComponent(u)+'">Открыть поиск Roblox: '+u+'</a>':
+
+'Введи имя пользователя.';
+
+}
+
+function analyze(){
+
+const c=document.getElementById('code').value.trim();
+
+document.getElementById('analysis').textContent=c?
+
+'Код получен ('+c.length+' символов). Автоматическая проверка Lua пока не подключена.':
+
+'Вставь Lua-код.';
+
+}
+
+function forecast(){
+
+const v=Number(document.getElementById('visits').value);
+
+const p=Number(document.getElementById('conversion').value);
+
+document.getElementById('forecast').textContent=
+
+v>0&&p>=0&&p<=100?
+
+'Прогноз покупателей: '+Math.round(v*p/100)+'. Доход в Robux зависит от цены и количества покупок.':
+
+'Проверь введённые значения.';
+
+}
+
+</script>
+
+</body>
+
+</html>
